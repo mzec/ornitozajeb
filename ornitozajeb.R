@@ -10,7 +10,7 @@ ornitozajeb <- function(vrsta, legit = NA) {
     library(stringdist)
 
     if (is.na(legit)) {
-        read.csv(file = "legit.csv")
+        legit <- read.csv(file = "legit.csv")
     }
 
     # mini-funkcija za traženje najbližeg stringa
