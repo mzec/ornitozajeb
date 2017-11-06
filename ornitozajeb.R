@@ -6,9 +6,13 @@
 # ver 1.2
 #####
 
-ornitozajeb <- function(vrsta, legit = NULL) {
+ornitozajeb <- function(vrsta, legit = NA) {
     library(stringdist)
-    
+
+    if (is.na(legit)) {
+        read.csv(file = "legit.csv")
+    }
+
     # mini-funkcija za traženje najbližeg stringa
     najblizi <- function(x, popis) {
         popis[amatch(x, popis, maxDist = Inf)]
