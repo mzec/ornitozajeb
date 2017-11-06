@@ -8,9 +8,10 @@
 
 ornitozajeb <- function(vrsta, legit = NA) {
     library(stringdist)
+    library(RCurl)
 
     if (is.na(legit)) {
-        legit <- read.csv(file = "legit.csv")
+	legit <- read.csv(text = getURL("https://raw.githubusercontent.com/mzec/ornitozajeb/master/legit.csv"))
     }
 
     # mini-funkcija za traženje najbližeg stringa
