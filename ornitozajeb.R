@@ -13,6 +13,7 @@ ornitozajeb <- function(vrsta, legit = NA) {
     if (is.na(legit)) {
 	legit <- read.csv(text = getURL("https://raw.githubusercontent.com/mzec/ornitozajeb/master/legit.csv"))
     }
+    legit_vrste <- legit
 
     # mini-funkcija za traženje najbližeg stringa
     najblizi <- function(x, popis) {
