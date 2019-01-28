@@ -1,14 +1,13 @@
-
-#####
+#
 # Funkcija za ispravljanje ornitozajeba
 # Udruga Biom
-# mzec 2015
-# ver 1.2
-#####
+# mzec 2019
+# v 2.0
+#
 
 ornitozajeb <- function(vrsta, legit = NA, automatic = TRUE) {
   library(stringdist)
-  library(plyr); library(dplyr)
+  library(dplyr)
   library(RCurl)
   
   if (is.na(legit)) {
@@ -69,6 +68,8 @@ ornitozajeb <- function(vrsta, legit = NA, automatic = TRUE) {
   }
   ispravke <- nonlegit$fixed
   names(ispravke) <- nonlegit$nonlegit
-  ispravljeno <- revalue(vrsta, ispravke)
-  return(ispravljeno)
+  for (j in 1:length(ispravke)) {
+    levels(vrsta)[levels(vrsta) == names(ispravke[j])] <- ispravke[j]
+  }
+  return(vrsta)
 }
