@@ -1,19 +1,18 @@
 #
 # Funkcija za ispravljanje ornitozajeba
 # Udruga Biom
-# mzec 2019
-# v 2.0
+# mzec 2021
+# v 2.1
 #
 
 ornitozajeb <- function(vrsta, legit = NA, automatic = TRUE) {
   library(stringdist)
   library(dplyr)
-  library(RCurl)
+  library(httr)
   
   if (is.na(legit)) {
-    legit <- read.csv(text = getURL("https://raw.githubusercontent.com/mzec/ornitozajeb/master/legit.csv"), header = FALSE)
+    legit <- read_lines(content(GET('https://raw.githubusercontent.com/mzec/ornitozajeb/master/legit.csv')))
   }
-  legit <- legit$V1
   
   # mini-funkcija za traženje najbližeg stringa
   najblizi <- function(x, popis) {
